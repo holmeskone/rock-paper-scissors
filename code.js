@@ -4,6 +4,7 @@ function getComputerChoice(min,max){
     const minCeiled = Math.ceil(min);
     const maxFloored = Math.floor(max);
     number = Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled); // The maximum is inclusive and the minimum is inclusive
+    let word;
     if (number === 0) {
         word = "Rock";
      } else if (number === 1) {
@@ -12,6 +13,7 @@ function getComputerChoice(min,max){
         else if (number === 2) {
         word = "Scissors";
      }
+     return word;
 }
  
 ///Write the logic to get the human choice
@@ -20,13 +22,10 @@ function getComputerChoice(min,max){
     return answer;
  }
 
+ ///Declare the players score and rounds
 
- ///Declare the players score 
- let humanScore = 0;
- let computerScore = 0;
- 
- /// Write the logic to play a single round
- function playRound(humanChoice, computerChoice){
+function playRound(humanChoice, computerChoice, humanScore, computerScore){
+    let output;
     if (humanChoice === computerChoice) {
         output = "It's a tie";
     } else if (
@@ -35,15 +34,29 @@ function getComputerChoice(min,max){
         (humanChoice === "Scissors" && computerChoice === "Paper")
     ) {
             output = "You won";
-            humanScore ++;
+            humanScore++;
     } else {
         output = "You lost";
-        computerScore ++;
+        computerScore++;
     } 
     console.log(output);
+    return {output, humanScore, computerScore};
 }
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice(0,2);
 
-playRound(humanSelection, computerSelection);
+function playGame(){
+    let humanScore = 0;
+    let computerScore = 0;
+
+    for (let i = 0; i < 5; i++) {
+    const humanSelection = getHumanChoice();
+    const computerSelection = getComputerChoice(0,2);
+    const result = playRound(humanSelection, computerSelection, humanScore, computerScore);
+    humanScore = result.humanScore;
+    computerScore = result.computerScore;
+    console.log("The round is " + (i+1));
+    }
+    console.log("Final Scores: Human: " + humanScore + ", Computer: " + computerScore);
+}
+
+playGame();
