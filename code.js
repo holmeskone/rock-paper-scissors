@@ -4,11 +4,27 @@ const rock = 0;
 const paper = 1;
 const scissors = 2;
 
+///Write the logic to get the computer choice
+
 function getComputerChoice(min,max){
     const minCeiled = Math.ceil(min);
     const maxFloored = Math.floor(max);
-    return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled); // The maximum is inclusive and the minimum is inclusive
-
+    return number = Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled); // The maximum is inclusive and the minimum is inclusive
 }
-    
+
 console.log(getComputerChoice(0,2));
+console.log(number)
+
+
+if (number === 0) {
+    console.log("Rock");
+ } else if (number === 1) {
+    console.log("Paper");
+ }
+    else if (number === 2) {
+    console.log("Scissors");
+ }
+
+ ///Write the logic to get the human choice
+
+ 
