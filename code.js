@@ -1,30 +1,49 @@
-console.log("Hello World")
-
-const rock = 0;
-const paper = 1;
-const scissors = 2;
-
 ///Write the logic to get the computer choice
 
 function getComputerChoice(min,max){
     const minCeiled = Math.ceil(min);
     const maxFloored = Math.floor(max);
-    return number = Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled); // The maximum is inclusive and the minimum is inclusive
+    number = Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled); // The maximum is inclusive and the minimum is inclusive
+    if (number === 0) {
+        word = "Rock";
+     } else if (number === 1) {
+        word = "Paper";
+     }
+        else if (number === 2) {
+        word = "Scissors";
+     }
+}
+ 
+///Write the logic to get the human choice
+ function getHumanChoice(){
+    let answer = prompt("Please enter Rock, Paper or Scissors:");
+    return answer;
+ }
+
+
+ ///Declare the players score 
+ let humanScore = 0;
+ let computerScore = 0;
+ 
+ /// Write the logic to play a single round
+ function playRound(humanChoice, computerChoice){
+    if (humanChoice === computerChoice) {
+        output = "It's a tie";
+    } else if (
+        (humanChoice === "Rock" && computerChoice === "Scissors") ||
+        (humanChoice === "Paper" && computerChoice === "Rock") ||
+        (humanChoice === "Scissors" && computerChoice === "Paper")
+    ) {
+            output = "You won";
+            humanScore ++;
+    } else {
+        output = "You lost";
+        computerScore ++;
+    } 
+    console.log(output);
 }
 
-console.log(getComputerChoice(0,2));
-console.log(number)
+const humanSelection = getHumanChoice();
+const computerSelection = getComputerChoice(0,2);
 
-
-if (number === 0) {
-    console.log("Rock");
- } else if (number === 1) {
-    console.log("Paper");
- }
-    else if (number === 2) {
-    console.log("Scissors");
- }
-
- ///Write the logic to get the human choice
-
- 
+playRound(humanSelection, computerSelection);
